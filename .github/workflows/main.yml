@@ -14,7 +14,7 @@ jobs:
         with:
           submodules: recursive
       - name: Build
-        run: build.sh
+        run: ./build.sh
       - name: Run
         run: |
           cd dist
