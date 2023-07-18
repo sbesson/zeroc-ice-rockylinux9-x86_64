@@ -1,0 +1,28 @@
+From 728c4a6155fdfa9585b867510e963077336527cc Mon Sep 17 00:00:00 2001
+From: Chris Allan <callan@glencoesoftware.com>
+Date: Thu, 14 Jul 2022 14:33:25 +0000
+Subject: [PATCH] OpenSSL 3.0 build (See zeroc-ice/ice#1320)
+
+---
+ cpp/src/IceUtil/Thread.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cpp/src/IceUtil/Thread.cpp b/cpp/src/IceUtil/Thread.cpp
+index 57e19c9a5a..11cd489592 100644
+--- a/cpp/src/IceUtil/Thread.cpp
++++ b/cpp/src/IceUtil/Thread.cpp
+@@ -721,9 +721,9 @@ IceUtil::Thread::start(size_t stackSize, bool realtimeScheduling, int priority)
+     }
+     if(stackSize > 0)
+     {
+-        if(stackSize < PTHREAD_STACK_MIN)
++        if(stackSize < static_cast<size_t>(PTHREAD_STACK_MIN))
+         {
+-            stackSize = PTHREAD_STACK_MIN;
++            stackSize = static_cast<size_t>(PTHREAD_STACK_MIN);
+         }
+ #ifdef __APPLE__
+         if(stackSize % 4096 > 0)
+-- 
+2.34.1
+
