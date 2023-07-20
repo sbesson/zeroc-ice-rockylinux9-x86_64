@@ -14,3 +14,7 @@ RUN dnf install -y \
     make \
     openssl-devel \
     libdb-cxx-devel
+
+# Install mcpp-devel from Ice 3.7 el8 repositories
+RUN dnf install -y https://zeroc.com/download/ice/3.7/el8/ice-repo-3.7.el8.noarch.rpm && \
+    dnf install -y mcpp-devel
